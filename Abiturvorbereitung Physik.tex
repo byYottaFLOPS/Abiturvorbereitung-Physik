@@ -13,6 +13,9 @@
 \usepackage{float}
 \usepackage[margin=2cm]{geometry}
 \usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{caption}
+\usepackage{amssymb}
 
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
@@ -372,6 +375,7 @@
 				
 					\begin{equation}
 						\frac{sin(\alpha)}{sin(\beta)}=\frac{v_1}{v_2}
+						\label{eq:reflexion}
 					\end{equation}
 					
 				\subsubsection{Reflexion}
@@ -387,6 +391,55 @@
 						\caption{Reflexion einer Welle}
 						\label{img:reflexion}
 					\end{figure}
+
+		\subsection{Brewster-Winkel}
+			Trifft unpolarisiertes Licht auf eine Grenzfläche zwischen zwei Medien, so wird ein Teil des Lichts reflektiert und ein anderer Teil gebrochen. Beträgt der Winkel zwischen dem reflektierten Licht und dem gebrochenen Licht dabei $90\degree$, so ist das reflektierte Licht vollständig linear polarisiert. Die Polarisation ist dabei senkrecht zur Einfallsebene. Derjenige Einfalls- beziehungsweise Ausfallswinkel, unter dem dies geschieht, nennt man dabei Brewster-Winkel.
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\textwidth]{img/brewster-winkel.png}
+				\caption{Reflexion und Brechung am Medienwechsel}
+				\caption*{Quelle: https://www.leifiphysik.de/optik/polarisation/ausblick/brewster-winkel}
+				\label{img:brewster-winkel}
+			\end{figure}
+			
+			Für das reflektierte Licht gilt 
+			\begin{equation}
+				\theta_{ein} = \theta_{B} = \theta_{aus}
+			\end{equation}\\
+			
+			Für das gebrochene Licht gilt
+			\begin{equation}
+				\theta_{brech} = 90\degree - \theta_{B}
+				\label{eq:brewster_brechung}
+			\end{equation}\\
+			
+			Mit den Brechungsindizes $n_1$ und $n_2$, welche analog zur Ausbreitungsgeschwindigkeit in Gleichung \ref{eq:reflexion} gesetzt werden können, folgt das Brechungsgesetz.
+			\begin{equation}
+				n_1 \cdot \sin(\theta_{ein}) = n_2 \cdot \sin(\theta_{brech})
+			\end{equation}\\
+			
+			Einsetzen von \ref{eq:brewster_brechung} liefert dann
+			\begin{equation}
+				\begin{aligned}
+					n_1 \cdot \sin(\theta_{B}) &= n_2 \cdot \sin(90\degree - \theta_{brech})\\
+					&= n_2 \cdot \cos(\theta_B)
+				\end{aligned}
+			\end{equation}\\
+			
+			Durch Umformen erhält man
+			\begin{equation}
+				\begin{aligned}
+					\frac{n_2}{n_1} &= \frac{\sin(\theta_{B})}{\cos(\theta_{B})}\\
+					&= \tan(\theta_{B})
+				\end{aligned}
+			\end{equation}\\
+			
+			\noindent In den meisten Fällen liegt eine Grenzfläche zwischen einem Vakuum oder Luft mit einem anderen Stoff vor. Da der Brechungsindex von Vakuum gleich 1 und der von Luft annähernd gleich 1 ist, kann in diesem Fall $n_1$ durch 1 ersetzt werden. Es folgt
+			\begin{equation}
+				n_2 = \tan(\theta_{B})
+			\end{equation}
+			
 
 		\subsection{Harmonischer Oszillator}
 			\begin{figure}[H]
@@ -783,9 +836,9 @@
 			\begin{equation}\label{Halleffekt:v}
 				\begin{aligned}
 					I &= \frac{\Delta Q}{\Delta t}\\
-					I &= \frac{n\cdot V\cdot e}{\Delta t}\\
-					I &= \frac{n\cdot b\cdot d\cdot l\cdot e}{\Delta t}\\
-					I &= n\cdot b\cdot d\cdot e\cdot v\\
+					&= \frac{n\cdot V\cdot e}{\Delta t}\\
+					&= \frac{n\cdot b\cdot d\cdot l\cdot e}{\Delta t}\\
+					&= n\cdot b\cdot d\cdot e\cdot v\\
 					v &= \frac{I}{n\cdot b\cdot d\cdot e}
 				\end{aligned}
 			\end{equation}
@@ -1022,7 +1075,7 @@
 								
 			
 		\subsection{Compton Effekt}
-			Beim Compton Effekt lässt man ein Photon mit der Wellenlänge $\lambda$ und dem Impuls $\vec{p_{Ph}}$ auf ein sich in Ruhe befindendes Elektron treffen. Nah dem ''Stoß'' bewegt sich das Photon unter dem Streuwinkel $\vartheta$ mit der neuen größeren Frequenz $\lambda'$ und dem vom Betrag her geringeren Impuls $\vec{p_{Ph}'}$. Das Elektron bewegt sich dann mit dem Impuls $\vec{p_{e}'}$. Dabei muss nach dem Impulserhaltungssatz $\vec{p_{Ph}}=\vec{p_{Ph}'} + \vec{p_{e}'}$ gelten. Die Wellenlängenänderung des Photons ist bei dem Stoß
+			Beim Compton Effekt lässt man ein Photon mit der Wellenlänge $\lambda$ und dem Impuls $\vec{p_{Ph}}$ auf ein sich in Ruhe befindendes Elektron treffen. Nach dem ''Stoß'' bewegt sich das Photon unter dem Streuwinkel $\vartheta$ mit der neuen größeren Wellenlänge $\lambda'$ und dem vom Betrag her geringeren Impuls $\vec{p_{Ph}'}$. Das Elektron bewegt sich dann mit dem Impuls $\vec{p_{e}'}$. Dabei muss nach dem Impulserhaltungssatz $\vec{p_{Ph}}=\vec{p_{Ph}'} + \vec{p_{e}'}$ gelten. Die Wellenlängenänderung des Photons ist bei dem Stoß
 			
 			\begin{equation}
 				\Delta\lambda = \lambda'-\lambda = \lambda_c\cdot(1-\cos(\beta)), \lambda_c = \frac{h}{m_e\cdot c}
@@ -1038,13 +1091,49 @@
 				\subitem Intensität $\hat{y}^2$ zur Antreffwahrscheinlichkeit $|\Psi|^2$.
 				\item Der Weg von der Quelle zum Lokalisationspunkt ist unbestimmt. Alle möglichen Wege sind gleichberechtigt (Superposition).
 			\end{enumerate}
+			
 		\subsection{Komplementarität}
 			Es ist nicht möglich sowohl den Weg eines Quants zu verfolgen als auch ein Interferenzbild zu erhalten. Man kann also nicht das Teilchen und Wellenmodell gleichzeitig anwenden, man braucht aber beide, da man nicht alle Effekte mit einem der beiden erklären kann.
+			
 		\subsection{Superposition}
 			Da die Bahn eines unteilbaren Quants zu einem Ort unbestimmt ist, müssen alle möglichen Bahnen als Rechenpfade mit $\lambda$-Zählern berücksichtigt werden. Das Superpositionsprinzip verbindet das Teilchen und das Wellenmodell miteinander.
 		\subsection{Knallertest}%TODo einbauen: Knallertest
-		\subsection{Teilchen als Quantenobjekte}%TODo vervollständigen
-		De-Broglie stellte die Hypothese auf, dass sich Teilchen wie Elektronen ebenfalls wie Quantenobjekte ausbreiten. Die Experimente von Jonsson zeigten dies, da Elektronen ein Interferenzmuster an einem Doppelspalt erzeugten.
 		
-
+		\subsection{Teilchen als Quantenobjekte}
+			De-Broglie stellte die Hypothese auf, dass sich Teilchen wie Elektronen ebenfalls wie Quantenobjekte ausbreiten. Für seine Theorie postulierte De-Broglie, dass alle Teilchen, also auch Elektronen, eine Wellenlänge besitzen. Um diese Wellenlänge für ein Teilchen zu bestimmen, kann mithilfe des Impulses gerechnet werden. Bereits von Photonen ist bekannt, dass gilt
+			\begin{equation}
+				p = \frac{h}{\lambda}
+			\end{equation}\\
+		
+			\noindent Umgestellt nach $\lambda$ folgt dann
+			\begin{equation}
+				\begin{aligned}
+					\lambda &= \frac{h}{p}\\
+					&= \frac{h}{m \cdot v}
+				\end{aligned}
+			\end{equation}\\
+		
+			\noindent Für ein Elektron, welches im elektrischen Feld mit der Spannung $U_{B}$ beschleunigt wird, folgt dann also
+			\begin{equation}
+				\lambda = \frac{h}{\sqrt{2 \cdot m \cdot q \cdot U_{B}}} = \frac{h}{\sqrt{2 \cdot m \cdot E_{kin}}}
+			\end{equation}
+		
+			\noindent Liegt $U_{B}$ im Kilovolt Bereich, so berechnet sich (nicht relativistisch) eine Wellenlänge, die im Bereich der Röntgenstrahlung liegt. Später von Jonsson durchgeführte Experimente zeigten dann, dass Elektronen die mit einer solchen Geschwindigkeit durch einen Doppelspalt geleitet werden, tatsächlich ein Interferenzmuster besitzen, De-Broglie also recht hatte.
+			
+		\subsection{Heisenbergsche Unschärferelation}
+			Die Heisenbergsche Unschärferelation besagt, dass es nicht möglich ist gleichzeitig zwei komplementäre Eigenschaften (hier Ort und Impuls) eines Quantenobjekts beliebig genau zu bestimmen. Je genauer die eine Eigenschaft dabei bekannt ist, desto ungenauer muss die andere sein. Durch Berechnungen am Einzelspalt ergibt sich dabei der folgende Zusammenhang, wobei $\Delta p$ die Impulsunschärfe und $\Delta x$ die Ortsunschärfe beschreiben:
+			\begin{equation}
+				\Delta p \cdot \Delta x = \hslash = \frac{h}{2 \cdot \pi}
+			\end{equation}
+			
+			
 \end{document}
+
+
+
+
+
+
+
+
+
